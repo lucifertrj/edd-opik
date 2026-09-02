@@ -1,0 +1,7 @@
+[
+  {
+    "name": "baseline",
+    "chat_model": "gemini-3.1-flash-lite",
+    "retrieval_k": 4
+  }
+]

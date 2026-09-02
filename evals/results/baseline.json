@@ -1,0 +1,356 @@
+{
+  "name": "baseline",
+  "change": "Measure the current retrieval and answer configuration.",
+  "acceptance": {
+    "compare_against": null,
+    "required_metrics": [
+      "answer_relevance",
+      "hallucination",
+      "answer_quality"
+    ]
+  },
+  "experiment_id": "01a05e90-7c28-7fc4-a0be-0c6606fe6798",
+  "experiment_url": "https://www.comet.com/opik/tarun-r-jain/experiments/01a05d8d-cb9c-707c-a566-f637c41cc2c1/compare?experiments=%5B%2201a05e90-7c28-7fc4-a0be-0c6606fe6798%22%5D",
+  "dataset_id": "01a05d8d-cb9c-707c-a566-f637c41cc2c1",
+  "timestamp": "2026-09-01T20:04:06.854754+00:00",
+  "aggregated_scores": {
+    "answer_relevance_metric": {
+      "mean": 0.663076923076923,
+      "min": 0.0,
+      "max": 1.0,
+      "std": 0.4452973653523492
+    },
+    "hallucination_metric": {
+      "mean": 0.06615384615384616,
+      "min": 0.0,
+      "max": 0.2,
+      "std": 0.07274824872330393
+    },
+    "answer_quality": {
+      "mean": 0.8076923076923077,
+      "min": 0.2,
+      "max": 1.0,
+      "std": 0.24651415936864715
+    }
+  },
+  "experiment_scores": {
+    "clean_negative_recall": {
+      "value": 1.0,
+      "reason": "3/3 known-unanswerable questions were answered without hallucinating (hallucination_metric < 0.5)."
+    }
+  },
+  "cases": [
+    {
+      "dataset_item_id": "01a05d8d-cea0-78cf-a16c-e5ad9b4f7347",
+      "input": "What is V1 in takeoff performance, and why is it not simply a fixed speed for a given aircraft type?",
+      "expected_output": "V1 is the takeoff decision speed: the maximum speed at which the crew can initiate a reject and still stop within the remaining accelerate-stop distance, and equally the minimum speed from which the takeoff can be continued on the remaining engine after a failure. It is not fixed per type because it is recomputed for every departure from runway length and slope, aircraft weight, flap setting, air density, wind component, and runway surface condition - so the same airframe can have a materially different V1 on two different days or runways.",
+      "label": 0,
+      "output": "I do not know. The provided context does not contain information regarding the definition of V1 or the factors that determine it.",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.0,
+          "reason": "The answer states it does not know and that the context lacks information about V1. It therefore does not attempt to define V1 or explain why it cannot be a fixed speed, and provides no relevant aviation performance explanation.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.0,
+          "reason": "['The OUTPUT explicitly states that the information is not present, which is consistent with the provided CONTEXT (no mention of V1 takeoff performance).', 'No new facts about V1 or takeoff speeds are introduced, so there are no hallucinated or contradictory details.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 1.0,
+          "reason": "The answer directly addresses the question by stating it cannot be determined from the provided context, and it does not guess or fabricate. Since no source/document content is given beyond \u201cprovided context,\u201d the correct high-quality behavior is to indicate unanswerability. Directness and source-grounding are satisfied.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce9f-7efe-b7a4-c43f001a8280",
+      "input": "How do winglets reduce induced drag, and what is the aerodynamic trade-off of fitting them?",
+      "expected_output": "Winglets reduce induced drag by weakening the wingtip vortex - the spanwise flow that rolls up around the tip - which cuts the downwash behind the wing and tilts the lift vector forward, recovering some of the energy otherwise lost to the vortex. The trade-off is added wetted area and therefore more parasite drag, plus extra structural weight and higher root bending moment, so the net benefit only appears at higher lift coefficients, which is why the gain shows up in cruise and climb rather than in high-speed low-altitude flight.",
+      "label": 0,
+      "output": "I do not know. The provided context does not contain information regarding winglets or how they reduce induced drag.",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.0,
+          "reason": "The response says it does not know and notes the provided context lacks information about winglets and induced drag. Since the user asked specifically how winglets reduce induced drag and the trade-off of fitting them, the answer does not address either part and provides no aerodynamic explanation, making it completely irrelevant.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.0,
+          "reason": "['The context contains no mention of winglets or induced drag reduction, so the statement that the answer is unknown is faithful to the provided material.', 'The output does not introduce or speculate about any aerodynamic trade-offs or mechanisms not present in the context.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 1.0,
+          "reason": "The answer directly addresses the question by explicitly stating it cannot be answered from the provided context. It does not guess or fabricate information, and it correctly handles an unanswerable question given the stated lack of source content about winglets, induced drag reduction, or aerodynamic trade-offs.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce9e-70e2-acee-b73285cf9263",
+      "input": "What does ETOPS stand for, and what determines the diversion time limit an operator is approved for?",
+      "expected_output": "ETOPS stands for Extended-range Twin-engine Operational Performance Standards (more recently redefined as Extended Operations). The approved diversion time - commonly 120, 180, or 207 minutes - is set by the regulator based on the operator's maintenance program, engine in-flight shutdown rate, crew training, and the aircraft type's demonstrated systems reliability, and it caps how far the aircraft may fly from an adequate en-route alternate airport.",
+      "label": 0,
+      "output": "I do not know. The provided context does not contain information regarding the definition of ETOPS or the determination of diversion time limits.",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.05,
+          "reason": "The answer states it does not know and claims the provided context lacks information. However, the question asks about ETOPS and diversion time limits; while the context shown is unrelated to ETOPS, the response does not attempt any general aviation knowledge or verify against the available material beyond a blanket statement. It is largely correct that the context does not contain the definitions, but the lack of any useful or partially relevant information keeps relevance very low.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.0,
+          "reason": "['The output states that the assistant does not know and that the provided context lacks information about ETOPS definition and diversion time limits, which is consistent with the given context text.', 'No unsupported or contradictory information is introduced.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 1.0,
+          "reason": "The question asks for (1) what ETOPS stands for and (2) what determines the diversion time limit an operator is approved for. The answer explicitly states it doesn\u2019t know and that the provided context lacks information for both parts. This is direct, clear, and correctly avoids guessing or fabricating unsupported details from the source document.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce9d-7e29-866c-19c44acc73c1",
+      "input": "What methods are used to detect and prevent ice formation on an aircraft?",
+      "expected_output": "Ice detector sensors warn the flight crew of icing conditions via an annunciator light, and on some aircraft automatically activate wing anti-ice (WAI) systems. Ice prevention methods include heating surfaces with hot air, heating by electrical elements, breaking up ice formations with inflatable boots, and chemical application.",
+      "label": 1,
+      "output": "Based on the provided text, the methods for detecting and preventing ice formation are as follows:\n\n**Detection:**\n*   **Visual detection:** Ice can be detected visually (page 144).\n*   **Ice detector sensors:** Most modern aircraft use one or more ice detector sensors located on the forward fuselage to warn the flight crew of icing conditions via an annunciator light (page 144).\n\n**Prevention/Control:**\nThere are four primary means used to prevent or control ice formation:\n1.  Heating surfaces with hot air (page 144).\n2.  Heating by electrical elements (page 144).\n3.  Breaking up ice formations, usually by inflatable boots (page 144).\n4.  Chemical application (page 144).\n\nAdditionally, some aircraft systems are designed to automatically activate ice protection systems when icing is detected (page 144).",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.98,
+          "reason": "The answer directly addresses the user\u2019s question by listing specific ice detection methods (visual detection and ice detector sensors) and ice prevention/control methods (hot air heating, electrical heating, inflatable boots, and chemical application), which closely match the provided context. It also mentions automatic activation of ice protection systems when icing is detected, consistent with the text. Only minor formatting/paraphrasing differences are present.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.05,
+          "reason": "['The output accurately reflects the CONTEXT: it describes visual detection, ice detector sensors on the forward fuselage with an annunciator light, and the four listed prevention/control methods (hot air heating, electrical heating, inflatable boots, chemical application).', 'It also faithfully includes the CONTEXT detail that on some aircraft the ice detection system can automatically turn on ice protection/WAI systems when icing is detected.', 'Page numbers mentioned in the output (\u201cpage 144\u201d) are not present in the provided CONTEXT excerpt; however, this does not materially change the factual content, so any hallucination is minor.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 0.8,
+          "reason": "The answer directly addresses the question by listing methods for both detection and prevention/control of aircraft ice formation. It is clear, well organized, and appears to cover the main subparts (detection vs. prevention). However, the response provides only page-referenced claims without reproducing or quoting the source, so full verification of exact wording/coverage isn\u2019t possible from the prompt alone. There is no obvious contradiction or fabrication indicated, but the grounding is not fully checkable. Overall it is strong and likely correct given the stated citations.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce9c-7781-9df8-1f374e4a83ef",
+      "input": "What is the role of the compensator unit in a large aircraft's hydraulic nose wheel steering system?",
+      "expected_output": "The compensator unit keeps fluid in the steering cylinders pressurized at all times. It is a three-port housing enclosing a spring-loaded piston and poppet: one port vents air to prevent trapped air from interfering with piston movement, and another routes the steering system's return fluid into the hydraulic return manifold when the poppet valve is open.",
+      "label": 1,
+      "output": "The role of the compensator unit is to keep fluid in the steering cylinders pressurized at all times (page 87).",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.98,
+          "reason": "The output directly states the compensator unit\u2019s role: keeping fluid pressurized in the steering cylinders at all times. This matches the provided context description exactly, with only minor wording differences, so it is highly relevant.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.12,
+          "reason": "['The output correctly states the compensator unit\u2019s role: keeping fluid in the steering cylinders pressurized at all times, which matches the CONTEXT (\u201ckeeps fluid in the steering cylinders pressurized at all times\u201d).', 'However, the output cites page 87, while the provided CONTEXT excerpts reference Page 56 (for the compensator unit description). This page number mismatch is a minor unfaithfulness.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 0.8,
+          "reason": "The answer directly addresses the role of the compensator unit and is clear. It is also grounded in the provided source claim (\u201ckeep fluid in the steering cylinders pressurized at all times,\u201d page 87). However, it is very brief and does not mention any additional roles or context that might be present in the source, so it may be incomplete depending on what the document specifies.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce9b-7302-87c8-bbc339834bef",
+      "input": "How often must aircraft transponders be tested according to the maintenance notes?",
+      "expected_output": "All transponders must be tested every 24 calendar months, or during an annual inspection if requested by the owner, and the test must be conducted by an authorized avionics repair facility.",
+      "label": 1,
+      "output": "According to the provided text, all transponders must be tested every 24-calendar months, or during an annual inspection if requested by the owner (page 21).",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.96,
+          "reason": "The answer directly addresses the question by stating the testing interval for aircraft transponders from the maintenance notes: every 24-calendar months, or during an annual inspection if requested by the owner. This matches the provided context and contains no significant irrelevant information.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.0,
+          "reason": "['The OUTPUT correctly states the maintenance requirement from the context: transponders must be tested every 24-calendar months or during an annual inspection if requested by the owner.', 'The referenced page number (page 21) matches the provided snippet location in the context.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 0.2,
+          "reason": "The answer is likely based on the source text and directly addresses the \u201chow often\u201d requirement, but no source excerpt/page is actually provided here to verify grounding. It also adds \u201cor during an annual inspection if requested by the owner,\u201d which may be accurate, yet cannot be confirmed without the document text. Because the response cannot be fully validated against the source, the grounding completeness is insufficient.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce9a-70ed-8fe6-8e842434bc78",
+      "input": "What precautions should be taken regarding personnel and control surfaces before jacking an aircraft?",
+      "expected_output": "There should be no person inside the aircraft while jacking, control surfaces should be locked, and ballasted weight should be removed before jacking. The jacking area should be oil free, the jack handle should not damage the aircraft structure, and propeller clearance should be ensured before jacking.",
+      "label": 1,
+      "output": "Based on the provided text, the following precautions must be taken regarding personnel and control surfaces before jacking an aircraft:\n\n*   **Personnel:** There should be no person inside the aircraft while jacking (page 175).\n*   **Control Surfaces:** Central surfaces should be locked (page 175).",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.82,
+          "reason": "The answer directly addresses the asked precautions specifically concerning personnel and control surfaces before jacking an aircraft, matching the provided context (no person inside; central surfaces locked). It is largely aligned, though it omits other relevant safety precautions mentioned in the context (e.g., roping off area, signs), but these are outside the narrow focus of the question.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.2,
+          "reason": "['The OUTPUT correctly states that there should be no person inside the aircraft while jacking, which is explicitly listed in the CONTEXT under PRECAUTIONS.', 'The OUTPUT correctly states that central surfaces should be locked, which is also explicitly listed in the CONTEXT.', 'However, it adds specific page references (page 175) that are not present in the provided CONTEXT, which constitutes minor unfaithfulness.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 0.5,
+          "reason": "The answer is direct and clearly addresses precautions related to (1) personnel and (2) control surfaces before jacking. It appears grounded in the source via the cited page numbers (175) and does not introduce unsupported details. However, it likely omits other relevant precautions that the full instruction might contain (e.g., specific control-surface locking details, other safety steps), so completeness is uncertain. Based on only two listed precautions, the response is partially complete.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce99-7f56-9705-07ee88072c63",
+      "input": "What is the ACES II ejection seat, and what is its peak catapult acceleration?",
+      "expected_output": "The ACES II (Advanced Concept Ejection Seat) is a rugged, lightweight, easy-to-maintain third-generation ejection seat capable of ejecting a pilot from zero-zero conditions up to maximum altitude and airspeeds around 250 knots. Its peak catapult acceleration is about 12gz, and it has three main operating modes for low, medium, and high speed/altitude ejections.",
+      "label": 1,
+      "output": "The ACES II (Advanced Concept Ejection Seat) is a third-generation ejection seat designed to be rugged, lightweight, easy to maintain, and updatable (page 165).\n\nIts peak catapult acceleration is about 12gz (page 165).",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.95,
+          "reason": "The answer directly defines what the ACES II ejection seat is (Advanced Concept Ejection Seat, third-generation, design goals) and correctly states its peak catapult acceleration as about 12g, matching the provided context (page 165). It stays focused on the user\u2019s two-part question with minimal extraneous information.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.0,
+          "reason": "['The output correctly identifies ACES II as the Advanced Concept Ejection Seat and as a third-generation seat, matching the provided context (though the page number in the context is not explicitly 165).', 'The output correctly states the peak catapult acceleration is about 12gzs, consistent with the context.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 0.8,
+          "reason": "The answer directly defines the ACES II seat and provides a specific quantitative value (peak catapult acceleration \u201cabout 12gz\u201d), both attributed to page 165 of the source. It is clear and well-matched to the question. However, it includes only limited context from the source (no further description beyond design goals) and does not address any additional implied details (if the question expected more). Still, there is no sign of unsupported guessing, so it is high quality but not fully expansive.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce98-7a59-b190-0bcf5d487edf",
+      "input": "What forms can water contamination take in aviation fuel, and how can entrained water be recognized?",
+      "expected_output": "Water can be present in fuel either dissolved in it or entrained/suspended in it. Entrained water can be detected with the naked eye: finely divided droplets reflect light and, in high concentrations, give the fuel a dull, hazy, or cloudy appearance.",
+      "label": 1,
+      "output": "According to the provided text, water can be present in aviation fuel in two forms:\n1. Dissolved in the fuel.\n2. Entrained or suspended in the fuel (page 102).\n\nEntrained water can be detected with the naked eye because the finely divided droplets reflect light, giving the fuel a dull, hazy, or cloudy appearance in high concentrations (page 102).",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 1.0,
+          "reason": "The answer directly addresses both parts of the user\u2019s question: it identifies the two forms of water contamination in aviation fuel (dissolved vs entrained/suspended) and explains how entrained water can be recognized (dull/hazy/cloudy appearance due to light reflection). This aligns closely with the provided context.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.05,
+          "reason": "['The output correctly states that water in aviation fuel can be present as dissolved or entrained/suspended, matching the CONTEXT.', 'It accurately describes the recognition of entrained water by naked-eye observation (dull, hazy, or cloudy appearance due to finely divided droplets reflecting light).', 'The only slight issue is the page citation (page 102) which is not present in the CONTEXT, but the underlying statements themselves faithfully reflect the provided text.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 1.0,
+          "reason": "The answer directly addresses the question by identifying the two forms of water contamination in aviation fuel (dissolved; entrained/suspended) and explains recognition of entrained water. It is clear, complete for both required parts, and uses specific, document-grounded details (including page references) without introducing unsupported claims.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce97-72bb-bb05-1e2777ddcb10",
+      "input": "How does a three-position control valve manage cylinder movement in a hydraulic system?",
+      "expected_output": "In the upper position the valve connects the pressure line to port A, raising the load. In the lower position it connects to port B, lowering the load. In the center position it locks fluid into the cylinder, holding it in position, and dead-ends the line so pump output returns to the tank via the pressure relief.",
+      "label": 1,
+      "output": "According to page 35, a three-position change-over control valve manages cylinder movement as follows:\n\n1.  **Upper position:** The pipe pressure line is connected to port A, which raises the load.\n2.  **Lower position:** The pipe pressure line is connected to port B, which lowers the load.\n3.  **Center position:** It locks the fluid into the cylinder (holding it in position) and dead-ends the fluid line, which causes all pump output fluid to return to the tank via the pressure relief.",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.95,
+          "reason": "The answer directly explains how a three-position change-over control valve manages cylinder movement, matching the provided context points for upper (raise via port A), lower (lower via port B), and center position (lock cylinder and dead-end flow/return to tank). It is specific, accurate, and fully aligned with the user\u2019s question.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.06,
+          "reason": "['The OUTPUT accurately restates the three-position control valve behavior described in the CONTEXT: upper position connects to port A to raise the load; lower position connects to port B to lower the load; center position locks fluid in the cylinder and dead-ends the line so pump output returns to tank via pressure relief.', 'The only potential issue is the citation \u201cpage 35,\u201d whereas the provided context shows \u201cAP/SOA Page 4.\u201d This is likely a minor attribution/metadata error and does not affect the technical content.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 1.0,
+          "reason": "The answer directly addresses how a three-position control valve manages cylinder movement by listing the upper, lower, and center positions and their effects (raise/lower/lock). It is clear, well-structured, and explicitly grounded in the referenced source (page 35). No unsupported claims or contradictions are present.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce96-7cc4-ac94-61d51530804a",
+      "input": "What is a turnbuckle used for in a cable-operated flight control system?",
+      "expected_output": "A turnbuckle is used to adjust the length of the control cable.",
+      "label": 1,
+      "output": "I do not know. The provided text mentions that mechanical flight control systems use rods, cables, pulleys, and chains, but it does not contain information regarding the use of turnbuckles.",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.05,
+          "reason": "The answer states it does not know and specifically notes the provided text lacks information about turnbuckles. However, it does not attempt to infer or explain what a turnbuckle does in general or within the described mechanical cable/rod/pulley linkage context, so it provides essentially no relevant information toward the user\u2019s question.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.05,
+          "reason": "['The OUTPUT correctly observes that the provided CONTEXT does not mention turnbuckles or their purpose.', 'The response appropriately limits itself to what is stated in the CONTEXT (mechanical systems using rods, cables, pulleys, and sometimes chains).']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 1.0,
+          "reason": "The answer directly addresses the question by stating it cannot be determined from the provided text. It clearly notes that turnbuckles are not mentioned and avoids guessing. This is complete, direct, clear, and correctly grounded in the absence of relevant information in the source document.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce95-7490-abce-55642593d883",
+      "input": "What is fly-by-wire based on, and how does it differ from a purely mechanical control system?",
+      "expected_output": "Fly-by-wire is based on signal processing of the pilot's demand before it is converted into actuator control, rather than transmitting force directly through mechanical linkages such as cables and push-pull rods.",
+      "label": 1,
+      "output": "Based on the provided text:\n\n**What fly-by-wire is based on:**\nDigital fly-by-wire architecture is based on computer signal processing. In this system, the pilot\u2019s demand is transduced into an electrical signal in the cabin and sent to a group of independent computers, which also sample data concerning flight conditions and the positions of servo-valves and actuators (page 6).\n\n**How it differs from a purely mechanical control system:**\n*   **Weight:** Fly-by-wire allows for weight reduction because mechanical linkages are substituted by wirings (page 7).\n*   **Control Method:** In mechanical systems, control is achieved through simple mechanical linkages (page 9). In fly-by-wire systems, mechanical linkages are replaced by electrical signals and computer processing (pages 6, 7).\n*   **Capabilities:** Fly-by-wire systems provide benefits such as flight envelope protection, turbulence suppression, and the ability to fly unstable vehicles, which are not inherent to purely mechanical systems (page 7).",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.9,
+          "reason": "The answer directly addresses both parts of the question: what fly-by-wire is based on (computer signal processing with electrical transduction of pilot inputs and computer sampling of flight/actuator data) and how it differs from purely mechanical control systems (substitution of mechanical linkages with electrical signals/wiring, resulting in benefits like weight reduction and advanced control features). Minor issues: it mentions specific page references not fully evidenced in the provided context and slightly generalizes differences (e.g., \u201ccontrol is achieved through simple mechanical linkages\u201d) without explicit support, but overall the content is strongly aligned with the context.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.15,
+          "reason": "['Most statements directly reflect the CONTEXT: fly-by-wire being based on computer signal processing, with the pilot\u2019s demand transduced to an electrical signal and sent to independent computers, is explicitly described in the \u201cDIGITAL FLY BY WIRE SYSTEMS\u201d section.', 'The differences versus mechanical systems are largely faithful: the CONTEXT states that originally engine control used simple mechanical linkages, and that in fly-by-wire weight reduction occurs because mechanical linkages are substituted by wirings.', 'Minor issue: the OUTPUT describes \u201cmechanical systems\u201d as using only simple mechanical linkages and implies specific mechanical-system limitations (\u201cnot inherent to purely mechanical systems\u201d); the CONTEXT lists benefits of fly-by-wire (envelope protection, turbulence suppression, flying unstable vehicles) but does not explicitly claim these are absent from all purely mechanical systems, making that part slightly generalized.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 0.6,
+          "reason": "The answer is largely direct and addresses both parts of the question (what fly-by-wire is based on; how it differs from a purely mechanical control system). However, it relies on multiple specific claims (e.g., weight reduction via substituting linkages with wiring, specific page-referenced capabilities like envelope protection/turbulence suppression/ability to fly unstable vehicles, and that mechanical systems use \u201csimple mechanical linkages\u201d) that cannot be verified here against the source text. Since the RAG grounding cannot be confirmed from the provided prompt, there is risk of unsupported or overly specific details. The structure and clarity are good, but completeness and source-document grounding are insufficiently evidenced.",
+          "scoring_failed": false
+        }
+      }
+    },
+    {
+      "dataset_item_id": "01a05d8d-ce94-7716-942c-2c8c74a8f17d",
+      "input": "What is the purpose of FADEC and what does it replace in piston-engined aircraft?",
+      "expected_output": "FADEC (Full Authority Digital Engine Control) is used in almost all current-generation jet engines and increasingly in piston engines. It replaces both magnetos in piston-engined aircraft, making magneto maintenance obsolete and eliminating carburetor heat, mixture controls, and engine priming; it controls each engine cylinder independently for optimum fuel injection and spark timing.",
+      "label": 1,
+      "output": "According to the provided text, the purpose of FADEC is to control engine parameters for optimum fuel injection and spark timing, provide engine protection, ensure redundancy, and improve fuel efficiency and systems integration (page 11). It also allows for engine health monitoring, diagnostics, and the programming of engine limitations (pages 10-11).\n\nIn piston-engined aircraft, FADEC replaces both magnetos, which makes costly magneto maintenance obsolete and eliminates the need for carburetor heat, mixture controls, and engine priming (page 11).",
+      "scores": {
+        "answer_relevance_metric": {
+          "value": 0.98,
+          "reason": "The answer directly addresses both parts of the question: it states FADEC\u2019s purpose (engine control/protection, fuel efficiency, monitoring/diagnostics) and clearly identifies what it replaces in piston-engined aircraft (both magnetos, plus related items like carburetor heat/mixture controls/engine priming). The content closely matches the provided context, with no significant off-topic material.",
+          "scoring_failed": false
+        },
+        "hallucination_metric": {
+          "value": 0.18,
+          "reason": "['The output accurately states FADEC\u2019s purpose as controlling engine cylinders for optimum fuel injection and spark timing and supporting protections/redudancy, which is directly supported by the context text on page 11.', 'It correctly mentions engine health monitoring/diagnostics and programming engine limitations, all of which are present in the context.', 'The only potential issue is citation granularity: the output claims \u201cpages 10-11\u201d for health monitoring/diagnostics and limitation programming, while the context shows these items but not clearly labeled as page 10; however, this is a minor/uncertain mismatch rather than a substantive hallucination.']",
+          "scoring_failed": false
+        },
+        "answer_quality": {
+          "value": 0.8,
+          "reason": "The answer directly addresses both parts of the question: (1) the purpose of FADEC and (2) what it replaces in piston-engined aircraft. It is clear and well organized. Most claims appear tightly aligned with the referenced page numbers (10\u201311) and specific replaced components (magnetos, plus mention of carburetor heat, mixture controls, engine priming). However, without the actual source excerpts, it\u2019s not fully verifiable that every specific replacement item and the detailed purpose statements are exactly supported by the provided text, so grounding can\u2019t be confirmed with 100% confidence. Overall it\u2019s strong and not obviously fabricated.",
+          "scoring_failed": false
+        }
+      }
+    }
+  ]
+}
