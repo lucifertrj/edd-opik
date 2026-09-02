@@ -2,6 +2,8 @@
 
 [![Watch the video](https://img.youtube.com/vi/e6akw_fKWPk/maxresdefault.jpg)](https://www.youtube.com/watch?v=e6akw_fKWPk)
 
+[▶ Watch on YouTube](https://www.youtube.com/watch?v=e6akw_fKWPk)
+
 This project answers questions about aircraft systems from a PDF.
 
 ![Overview](assets/overview.png)
@@ -140,3 +142,5 @@ rag-loop report topk-6
   experiment tried, in order.
 
 [![Watch the video](https://img.youtube.com/vi/e6akw_fKWPk/maxresdefault.jpg)](https://www.youtube.com/watch?v=e6akw_fKWPk)
+
+[▶ Watch on YouTube](https://www.youtube.com/watch?v=e6akw_fKWPk)
