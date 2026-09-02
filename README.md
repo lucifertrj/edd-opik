@@ -1,6 +1,10 @@
-# RAG Loop
+# Automating Eval-Driven Development Using Coding Agents
+
+[![Watch the video](https://img.youtube.com/vi/e6akw_fKWPk/maxresdefault.jpg)](https://www.youtube.com/watch?v=e6akw_fKWPk)
 
 This project answers questions about aircraft systems from a PDF.
+
+![Overview](assets/overview.png)
 
 It uses LangGraph for the RAG steps, Gemini for generation, FastEmbed (local, keyless) for
 embeddings, Qdrant Cloud for PDF search, and Opik for traces, datasets, and scores.
@@ -41,6 +45,8 @@ rag-loop ask "What is the function of the auxiliary power unit?"
 ```
 
 ## The Loop
+
+![Loop flow](assets/flow.png)
 
 Run repeatedly, one change at a time, once setup is done. This is what an agent should follow for
 eval-driven development on this repo — the full version, with rules and preconditions, is in
@@ -120,6 +126,8 @@ rag-loop run topk-6
 rag-loop report topk-6
 ```
 
+![Experiments](assets/experiments.png)
+
 ## Inspecting the loop's history
 
 `rag-loop run` never overwrites history — it's all in two places:
@@ -130,3 +138,5 @@ rag-loop report topk-6
 - **`evals/experiments.json`** — every entry keeps a `result` block (`decision`, `reason`,
   per-metric `comparisons`) once it's been run, so the file itself is a running scoreboard of every
   experiment tried, in order.
+
+[![Watch the video](https://img.youtube.com/vi/e6akw_fKWPk/maxresdefault.jpg)](https://www.youtube.com/watch?v=e6akw_fKWPk)
