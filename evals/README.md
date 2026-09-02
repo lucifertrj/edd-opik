@@ -9,14 +9,15 @@ Each line is a golden — a real question grounded in `data/aircraft_systems.pdf
 answer taken directly from the document text:
 
 ```json
-{"input": "question", "expected_output": "answer taken directly from the source PDF", "metadata": {"source": "aircraft_systems.pdf", "page": 11}}
+{"input": "question", "expected_output": "answer taken directly from the source PDF", "metadata": {"source": "aircraft_systems.pdf", "page": 11}, "label": 1, "critique": "Why the expected answer is or is not grounded in the source."}
 ```
 
 `expected_output` must be lifted from the actual document, not invented. `metadata.page` is the
 1-indexed PDF page the answer comes from, matching the page numbers the app cites in its own
 answers, or `null` for a clean negative — a question with no answer anywhere in the source.
-`rag-loop seed` validates the file (`input`, `expected_output`, `metadata` required) and creates a
-new Opik dataset version — fix the file rather than working around the validator.
+`rag-loop seed` validates the file (`input`, `expected_output`, `metadata`, `label`, and `critique`
+required; `metadata` contains `source` and `page`, where `page` is an integer or `null`) and creates
+a new Opik dataset version — fix the file rather than working around the validator.
 
 Each golden also carries `label` (`1` if `expected_output` is actually grounded in the document,
 `0` if it isn't) and `critique` (why), from an audit of the goldens against the source PDF. This is
